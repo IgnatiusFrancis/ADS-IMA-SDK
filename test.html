@@ -263,6 +263,73 @@
         opacity: 0.7;
         font-size: 0.9rem;
       }
+
+      /* ===== CTA VISIBILITY FIXES ===== */
+      /* Force CTA button visibility on all devices */
+      .vast-click-through,
+      .cta-button,
+      .vjs-ima-ad-container .vjs-ima-ad-label,
+      .vjs-ima-ad-container .vjs-ima-ad-info {
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+      }
+
+      /* Ensure the clickable area is visible */
+      .vjs-ima-ad-container .vjs-ima-click-div {
+        display: block !important;
+        pointer-events: auto !important;
+        z-index: 9999 !important;
+      }
+
+      /* Make the Learn More button always visible */
+      .vjs-ima-ad-container .vjs-ima-learn-more {
+        display: inline-block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+        z-index: 10000 !important;
+        background: rgba(0, 0, 0, 0.7) !important;
+        color: white !important;
+        padding: 8px 16px !important;
+        border-radius: 4px !important;
+        font-size: 14px !important;
+        font-weight: bold !important;
+        border: 2px solid #fff !important;
+      }
+
+      /* Override any device-specific hiding */
+      @media (min-width: 768px) {
+        .vjs-ima-ad-container .vjs-ima-learn-more,
+        .vjs-ima-ad-container .vjs-ima-click-div {
+          display: inline-block !important;
+          opacity: 1 !important;
+          visibility: visible !important;
+        }
+      }
+
+      /* Ensure ad container is properly layered */
+      .vjs-ima-ad-container {
+        z-index: 9998 !important;
+        pointer-events: auto !important;
+      }
+
+      /* Countdown timer visibility */
+      .vjs-ima-ad-container .vjs-ima-countdown-div {
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        color: white !important;
+        font-size: 14px !important;
+        font-weight: bold !important;
+      }
+
+      /* Ad controls visibility */
+      .vjs-ima-ad-container .vjs-ima-controls-div {
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+      }
     </style>
   </head>
   <body>
@@ -291,17 +358,17 @@
           </video>
         </div>
       </div>
-      <!-- value="http://localhost:3002/api/v1/streaming/play" -->
- <!-- value="https://staging-api.tentztv.com/api/v1/streaming/play" -->
+
       <div class="config-section">
         <h2 class="section-title">⚙️ Configuration</h2>
-
+        <!-- value="http://localhost:3002/api/v1/streaming/play" -->
+        <!-- value="https://staging-api.tentztv.com/api/v1/streaming/play" -->
         <div class="form-group">
           <label for="backendUrl">Backend URL</label>
           <input
             type="text"
             id="backendUrl"
-             value="https://staging-api.tentztv.com/api/v1/streaming/play"
+            value="https://staging-api.tentztv.com/api/v1/streaming/play"
             placeholder="Enter backend play endpoint"
           />
         </div>
@@ -311,7 +378,7 @@
           <input
             type="text"
             id="contentId"
-            value="68b0e9e4077b631f40be4969"
+            value="68cd73c308e877bee25cfecb"
             placeholder="Enter content ID"
           />
         </div>
@@ -333,6 +400,16 @@
             <option value="480p">480p</option>
             <option value="auto">Auto</option>
           </select>
+        </div>
+
+        <div class="form-group">
+          <label for="userId">User ID</label>
+          <input
+            type="text"
+            id="userId"
+            value="689e986ffa6940ac23f2b0d8"
+            placeholder="Enter user ID"
+          />
         </div>
 
         <div class="form-group">
@@ -375,63 +452,6 @@
         </div>
       </div>
 
-      </div> 
-<!-- End of config-section -->
-      <!-- ADD THIS DOWNLOAD SECTION HERE -->
-      <div class="config-section">
-        <h2 class="section-title">📥 Download Options</h2>
-        
-        <div class="form-group">
-          <label for="downloadQuality">Download Quality</label>
-          <select id="downloadQuality">
-            <option value="360p">360p (~150MB)</option>
-            <option value="480p">480p (~250MB)</option>
-            <option value="720p" selected>720p (~500MB)</option>
-            <option value="1080p">1080p (~1GB)</option>
-          </select>
-        </div>
-
-        <button id="downloadBtn" style="
-          width: 100%;
-          padding: 12px;
-          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-          color: white;
-          border: none;
-          border-radius: 8px;
-          font-size: 1rem;
-          font-weight: 600;
-          cursor: pointer;
-          transition: transform 0.2s, box-shadow 0.2s;
-          margin-top: 10px;
-        " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 5px 15px rgba(0,0,0,0.3)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
-          📥 Download Video for Offline Viewing
-        </button>
-
-        <div id="downloadInfo" style="
-          display: none;
-          background: rgba(0, 0, 0, 0.3);
-          border-radius: 8px;
-          padding: 15px;
-          margin-top: 15px;
-        ">
-          <div class="info-item">
-            <span class="info-label">Download URL:</span>
-            <span class="info-value" id="downloadUrl" style="word-break: break-all; max-width: 100%;">-</span>
-          </div>
-          <div class="info-item">
-            <span class="info-label">Expires At:</span>
-            <span class="info-value" id="downloadExpires">-</span>
-          </div>
-          <div class="info-item">
-            <span class="info-label">Download Speed:</span>
-            <span class="info-value" id="downloadSpeed">-</span>
-          </div>
-        </div>
-      </div>
-      <!-- END OF DOWNLOAD SECTION -->
-
-
-
       <div class="console-section">
         <h2 class="section-title">📋 Event Log</h2>
         <div id="console"></div>
@@ -449,6 +469,7 @@
       let player = null;
       let streamData = null;
       const uniqueId = generateUniqueId();
+      let ctaCheckInterval = null;
 
       function generateUniqueId() {
         return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, (c) => {
@@ -479,9 +500,76 @@
         console.log(`[${type.toUpperCase()}] ${message}`);
       }
 
+      // Add this function to force CTA visibility
+      function forceCTAVisibility() {
+        // Try multiple selectors for CTA elements
+        const selectors = [
+          ".vjs-ima-learn-more",
+          ".vast-click-through",
+          ".cta-button",
+          ".vjs-ima-ad-container .vjs-ima-click-div",
+          '[class*="learn-more"]',
+          '[class*="click-through"]',
+          ".vjs-ima-countdown-div",
+          ".vjs-ima-controls-div",
+        ];
+
+        let foundElements = false;
+
+        selectors.forEach((selector) => {
+          const elements = document.querySelectorAll(selector);
+          elements.forEach((element) => {
+            element.style.display = "inline-block";
+            element.style.opacity = "1";
+            element.style.visibility = "visible";
+            element.style.pointerEvents = "auto";
+            element.style.zIndex = "9999";
+            element.style.position = "relative";
+            foundElements = true;
+          });
+        });
+
+        // Also force the ad container to be interactive
+        const adContainers = document.querySelectorAll(
+          ".vjs-ima-ad-container, .ima-ad-container"
+        );
+        adContainers.forEach((container) => {
+          container.style.pointerEvents = "auto";
+          container.style.zIndex = "9998";
+          container.style.position = "relative";
+        });
+
+        if (foundElements) {
+          log("ads", "CTA elements forced visible");
+        }
+
+        return foundElements;
+      }
+
+      // Start checking for CTA elements during ad playback
+      function startCTACheck() {
+        if (ctaCheckInterval) {
+          clearInterval(ctaCheckInterval);
+        }
+
+        ctaCheckInterval = setInterval(() => {
+          if (player && player.ads && player.ads.state === "ad-playback") {
+            const found = forceCTAVisibility();
+            if (found) {
+              log("ads", "CTA check: Elements visible during ad playback");
+            }
+          } else {
+            // Clear interval when not in ad playback
+            clearInterval(ctaCheckInterval);
+            ctaCheckInterval = null;
+          }
+        }, 500); // Check every 500ms during ad playback
+      }
+
       async function fetchStreamData() {
         const backendUrl = document.getElementById("backendUrl").value;
         const contentId = document.getElementById("contentId").value;
+        const userId = document.getElementById("userId").value;
         const contentType = document.getElementById("contentType").value;
         const quality = document.getElementById("quality").value;
         const paymentMethod = document.getElementById("paymentMethod").value;
@@ -489,6 +577,11 @@
         if (!contentId.trim()) {
           log("error", "Content ID is required");
           throw new Error("Content ID is required");
+        }
+
+        if (!userId.trim()) {
+          log("error", "userId ID is required");
+          throw new Error("userId ID is required");
         }
 
         if (!contentType.trim()) {
@@ -502,6 +595,7 @@
           const url = new URL(backendUrl);
           url.searchParams.append("contentType", contentType);
           url.searchParams.append("contentId", contentId);
+          url.searchParams.append("userId", userId);
           url.searchParams.append("quality", quality);
           url.searchParams.append("paymentMethod", paymentMethod);
 
@@ -613,7 +707,8 @@
           } else {
             try {
               log("ads", "Initializing IMA SDK...");
-
+              console.log(streamData.ads);
+              log("success", streamData.ads);
               // Check if test ads checkbox is enabled
               const useTestAds = document.getElementById("useTestAds").checked;
               const adTagUrl = useTestAds
@@ -621,10 +716,20 @@
                   Date.now()
                 : streamData.ads;
 
+              // Enhanced IMA configuration
               player.ima({
                 adTagUrl: adTagUrl,
                 debug: true,
                 disableCustomPlaybackForIOS10Plus: true,
+                // Force ad display settings
+                showControlsForJSAds: true,
+                autoPlayAdBreaks: true,
+                // Ensure ads are fully interactive
+                contribAdsSettings: {
+                  debug: true,
+                  timeout: 10000,
+                  prerollTimeout: 10000,
+                },
               });
 
               log("success", `IMA SDK initialized with ad tag`);
@@ -646,7 +751,8 @@
         // Set video source after IMA is initialized
         if (streamData.adaptiveUrl) {
           player.src({
-            src: streamData.adaptiveUrl,
+            // src: streamData.adaptiveUrl,
+            src: "https://vz-fe98a747-092.b-cdn.net/8c74c897-7b31-4c57-8880-5b1ee9615ad3/playlist.m3u8",
             type: "application/x-mpegURL",
           });
           log("info", `HLS stream loaded: ${streamData.adaptiveUrl}`);
@@ -672,36 +778,80 @@
 
         // Ad events - only attach if IMA is available
         if (player.ima) {
-          player.on("adsready", () => log("ads", "✓ IMA Ads Manager ready"));
+          player.on("adsready", () => {
+            log("ads", "✓ IMA Ads Manager ready");
+            forceCTAVisibility();
+          });
 
-          player.on("ads-manager", () => log("ads", "Ads manager loaded"));
+          player.on("ads-manager", () => {
+            log("ads", "Ads manager loaded");
+            forceCTAVisibility();
+          });
 
-          player.on("ads-request", () =>
-            log("ads", "📡 Ad request sent to server")
-          );
+          player.on("ads-request", () => {
+            log("ads", "📡 Ad request sent to server");
+            forceCTAVisibility();
+          });
 
-          player.on("ads-load", () => log("ads", "Ad creative loaded"));
+          player.on("ads-load", () => {
+            log("ads", "Ad creative loaded");
+            forceCTAVisibility();
+            startCTACheck();
+          });
 
-          player.on("ads-loadstart", () => log("ads", "Ad loading started"));
+          player.on("ads-loadstart", () => {
+            log("ads", "Ad loading started");
+            forceCTAVisibility();
+          });
 
           player.on("ads-ad-started", () => {
             log("ads", "▶️ Ad playback started");
+            // Force CTA visibility when ad starts
+            setTimeout(() => {
+              forceCTAVisibility();
+              startCTACheck();
+            }, 1000);
           });
 
-          player.on("ads-first-quartile", () => log("ads", "Ad progress: 25%"));
+          player.on("ads-first-quartile", () => {
+            log("ads", "Ad progress: 25%");
+            forceCTAVisibility();
+          });
 
-          player.on("ads-midpoint", () => log("ads", "Ad progress: 50%"));
+          player.on("ads-midpoint", () => {
+            log("ads", "Ad progress: 50%");
+            forceCTAVisibility();
+          });
 
-          player.on("ads-third-quartile", () => log("ads", "Ad progress: 75%"));
+          player.on("ads-third-quartile", () => {
+            log("ads", "Ad progress: 75%");
+            forceCTAVisibility();
+          });
 
-          player.on("ads-ad-ended", () => log("ads", "✓ Ad completed"));
+          player.on("ads-ad-ended", () => {
+            log("ads", "✓ Ad completed");
+            if (ctaCheckInterval) {
+              clearInterval(ctaCheckInterval);
+              ctaCheckInterval = null;
+            }
+          });
 
-          player.on("ads-pod-started", () => log("ads", "Ad pod started"));
+          player.on("ads-pod-started", () => {
+            log("ads", "Ad pod started");
+            forceCTAVisibility();
+          });
 
-          player.on("ads-pod-ended", () => log("ads", "Ad pod ended"));
+          player.on("ads-pod-ended", () => {
+            log("ads", "Ad pod ended");
+            forceCTAVisibility();
+          });
 
           player.on("ads-allpods-completed", () => {
             log("ads", "🎉 All ads completed - playing content");
+            if (ctaCheckInterval) {
+              clearInterval(ctaCheckInterval);
+              ctaCheckInterval = null;
+            }
           });
 
           player.on("adserror", (e) => {
@@ -710,13 +860,20 @@
               e?.data?.AdErrorEvent?.getError?.()?.getMessage?.() ||
               "Unknown ad error";
             log("error", `Ad Error: ${errorMsg}`);
+            if (ctaCheckInterval) {
+              clearInterval(ctaCheckInterval);
+              ctaCheckInterval = null;
+            }
           });
 
           player.on("ads-pause", () => log("ads", "Ad paused"));
 
           player.on("ads-resume", () => log("ads", "Ad resumed"));
 
-          player.on("ads-click", () => log("ads", "Ad clicked"));
+          player.on("ads-click", () => {
+            log("ads", "Ad clicked");
+            forceCTAVisibility();
+          });
 
           player.on("contentresumeequested", () => {
             log("content", "Content resume requested after ads");
@@ -787,159 +944,6 @@
           }
         }, 100);
       };
-
-      
-    // Download functionality
-      // document.getElementById("downloadBtn").addEventListener("click", async () => {
-      //   const contentId = document.getElementById("contentId").value;
-      //   const contentType = document.getElementById("contentType").value;
-      //   const quality = document.getElementById("downloadQuality").value;
-      //   const downloadBtn = document.getElementById("downloadBtn");
-        
-      //   if (!contentId.trim()) {
-      //     log("error", "Content ID is required for download");
-      //     alert("Please enter a Content ID");
-      //     return;
-      //   }
-
-      //   // Disable button and show loading state
-      //   downloadBtn.disabled = true;
-      //   downloadBtn.textContent = "⏳ Generating Download Link...";
-      //   log("info", `Requesting download URL for ${contentId} (${quality})...`);
-
-      //   try {
-      //     // Construct the download API URL
-      //     const backendUrl = document.getElementById("backendUrl").value;
-      //     const baseUrl = backendUrl.replace("/play", "");
-      //     const downloadApiUrl = `${baseUrl}/videos/${contentId}/download?contentType=${contentType}&quality=${quality}`;
-          
-      //     log("info", `Calling: ${downloadApiUrl}`);
-
-      //     const response = await fetch(downloadApiUrl, {
-      //       method: "GET",
-      //       headers: {
-      //         "x-tentz-platform": "tentztv-mobile",
-      //         "x-unique-identifier": uniqueId,
-      //         "x-tentz-app-version": "1.0.0",
-      //         "Content-Type": "application/json",
-      //       },
-      //     });
-
-      //     const data = await response.json();
-
-      //     if (!response.ok) {
-      //       const errorMsg = data?.message || `HTTP ${response.status}`;
-      //       log("error", `Download request failed: ${errorMsg}`);
-      //       throw new Error(errorMsg);
-      //     }
-
-      //     if (data.success && data.data) {
-      //       log("success", "Download URL generated successfully!");
-            
-      //       // Display download information
-      //       document.getElementById("downloadInfo").style.display = "block";
-      //       document.getElementById("downloadUrl").textContent = data.data.downloadUrl;
-      //       document.getElementById("downloadExpires").textContent = new Date(data.data.expiresAt).toLocaleString();
-      //       document.getElementById("downloadSpeed").textContent = data.data.estimatedSpeed || "Standard";
-
-      //       // Create a temporary link and trigger download
-      //       const a = document.createElement("a");
-      //       a.href = data.data.downloadUrl;
-      //       a.download = `video_${quality}.mp4`;
-      //       document.body.appendChild(a);
-      //       a.click();
-      //       document.body.removeChild(a);
-
-      //       log("success", `✓ Download started! URL valid until ${new Date(data.data.expiresAt).toLocaleString()}`);
-            
-      //       downloadBtn.textContent = "✓ Download Started!";
-      //       setTimeout(() => {
-      //         downloadBtn.textContent = "📥 Download Another Quality";
-      //         downloadBtn.disabled = false;
-      //       }, 3000);
-      //     } else {
-      //       throw new Error("Invalid response from server");
-      //     }
-
-      //   } catch (error) {
-      //     log("error", `Download failed: ${error.message}`);
-      //     alert(`Download failed: ${error.message}`);
-      //     downloadBtn.textContent = "📥 Download Video for Offline Viewing";
-      //     downloadBtn.disabled = false;
-      //   }
-      // });
-
-// Download functionality for your HTML page
-document.getElementById("downloadBtn").addEventListener("click", async () => {
-  const contentId = document.getElementById("contentId").value;
-  const contentType = document.getElementById("contentType").value;
-  const quality = document.getElementById("downloadQuality").value;
-  const downloadBtn = document.getElementById("downloadBtn");
-  
-  if (!contentId.trim()) {
-    alert("Please enter a Content ID");
-    return;
-  }
-
-  // Disable button and show loading
-  downloadBtn.disabled = true;
-  downloadBtn.textContent = "⏳ Generating Download...";
-
-  try {
-    const backendUrl = document.getElementById("backendUrl").value;
-    const baseUrl = backendUrl.replace("/play", "");
-    const downloadApiUrl = `${baseUrl}/videos/${contentId}/download?contentType=${contentType}&quality=${quality}`;
-    
-    const response = await fetch(downloadApiUrl, {
-      method: "GET",
-      headers: {
-        "x-tentz-platform": "tentztv-mobile",
-        "x-unique-identifier": "test-device-id",
-        "x-tentz-app-version": "1.0.0",
-      },
-    });
-
-    const data = await response.json();
-
-    if (!response.ok) {
-      throw new Error(data?.message || `HTTP ${response.status}`);
-    }
-
-    if (data.success && data.data) {
-      // Method 1: Direct download using blob (recommended)
-      try {
-        const downloadResponse = await fetch(data.data.downloadUrl);
-        const blob = await downloadResponse.blob();
-        const url = window.URL.createObjectURL(blob);
-        
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = `${data.data.content.title}_${quality}.mp4`;
-        document.body.appendChild(a);
-        a.click();
-        window.URL.revokeObjectURL(url);
-        document.body.removeChild(a);
-        
-        downloadBtn.textContent = "✓ Download Complete!";
-      } catch (blobError) {
-        // Method 2: Fallback - open in new tab
-        window.open(data.data.downloadUrl, '_blank');
-        downloadBtn.textContent = "📥 Download Opened in New Tab";
-      }
-      
-      setTimeout(() => {
-        downloadBtn.textContent = "📥 Download Video";
-        downloadBtn.disabled = false;
-      }, 3000);
-    }
-
-  } catch (error) {
-    alert(`Download failed: ${error.message}`);
-    downloadBtn.textContent = "📥 Download Video";
-    downloadBtn.disabled = false;
-  }
-});
-
     </script>
   </body>
 </html>
